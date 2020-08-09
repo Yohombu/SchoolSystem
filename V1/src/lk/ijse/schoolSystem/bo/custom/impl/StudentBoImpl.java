@@ -28,7 +28,14 @@ public class StudentBoImpl implements StudentBO {
 
     @Override
     public StudentDTO getStudent(String id) throws Exception {
-        return null;
+        try (Session session = HibernateUtil.getSession()) {
+            studentDAO.setSession(session);
+            session.beginTransaction();
+            Student student = studentDAO.get(id);
+            session.getTransaction().commit();
+
+            return new StudentDTO(student.getId(), student.getName(), student.getAddress(), student.getAge());
+        }
     }
 
     @Override
