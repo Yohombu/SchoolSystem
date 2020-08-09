@@ -11,7 +11,7 @@ class StudentBoImplTest {
 
     void saveStudent() throws Exception {
         new StudentBoImpl().saveStudent(
-                new StudentDTO("001", "Nimal", "Colombo", 20)
+                new StudentDTO("002", "Bandara", "Gampaha", 30)
         );
     }
 

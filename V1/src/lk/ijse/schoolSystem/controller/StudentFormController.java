@@ -1,9 +1,10 @@
 package lk.ijse.schoolSystem.controller;
 
 import javafx.event.ActionEvent;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
+import lk.ijse.schoolSystem.bo.custom.StudentBO;
+import lk.ijse.schoolSystem.bo.custom.impl.StudentBoImpl;
+import lk.ijse.schoolSystem.dto.StudentDTO;
 
 public class StudentFormController {
     public TextField txtId;
@@ -16,7 +17,22 @@ public class StudentFormController {
     public TableColumn colAddress;
     public TableColumn colAge;
 
-    public void btnSaveOnAction(ActionEvent actionEvent) {
+    private StudentBO studentBO = null;
+
+
+    public void initialize() {
+        studentBO = new StudentBoImpl();
+    }
+
+
+    public void btnSaveOnAction(ActionEvent actionEvent) throws Exception {
+
+        StudentDTO studentDTO = new StudentDTO(txtId.getText(), txtName.getText(), txtAddress.getText(), Integer.parseInt(txtAge.getText()));
+        if (studentBO.saveStudent(studentDTO)) {
+            new Alert(Alert.AlertType.INFORMATION, "Saved!!", ButtonType.OK).show();
+        } else {
+            new Alert(Alert.AlertType.WARNING, "Try Again!!", ButtonType.OK).show();
+        }
 
     }
 

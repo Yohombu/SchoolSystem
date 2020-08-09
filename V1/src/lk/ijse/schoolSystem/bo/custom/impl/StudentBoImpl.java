@@ -1,8 +1,8 @@
 package lk.ijse.schoolSystem.bo.custom.impl;
 
 import lk.ijse.schoolSystem.bo.custom.StudentBO;
+import lk.ijse.schoolSystem.dao.DaoFactory;
 import lk.ijse.schoolSystem.dao.custom.StudentDAO;
-import lk.ijse.schoolSystem.dao.custom.impl.StudentDAOImpl;
 import lk.ijse.schoolSystem.db.HibernateUtil;
 import lk.ijse.schoolSystem.dto.StudentDTO;
 import lk.ijse.schoolSystem.entity.Student;
@@ -12,7 +12,7 @@ import java.util.List;
 
 public class StudentBoImpl implements StudentBO {
 
-    StudentDAO studentDAO = new StudentDAOImpl();
+    StudentDAO studentDAO = DaoFactory.getInstance().getDao(DaoFactory.DaoType.STUDENT); //type inference
 
     @Override
     public boolean saveStudent(StudentDTO dto) throws Exception {
