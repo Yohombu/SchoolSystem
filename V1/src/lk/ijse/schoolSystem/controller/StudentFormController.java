@@ -2,8 +2,8 @@ package lk.ijse.schoolSystem.controller;
 
 import javafx.event.ActionEvent;
 import javafx.scene.control.*;
+import lk.ijse.schoolSystem.bo.BoFactory;
 import lk.ijse.schoolSystem.bo.custom.StudentBO;
-import lk.ijse.schoolSystem.bo.custom.impl.StudentBoImpl;
 import lk.ijse.schoolSystem.dto.StudentDTO;
 
 public class StudentFormController {
@@ -21,7 +21,7 @@ public class StudentFormController {
 
 
     public void initialize() {
-        studentBO = new StudentBoImpl();
+        studentBO = BoFactory.getInstance().getBoType(BoFactory.BoType.STUDENT);
     }
 
 
